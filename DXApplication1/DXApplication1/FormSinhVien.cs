@@ -46,6 +46,7 @@ namespace DXApplication1
                 btnPhucHoi.Enabled = btnGhi.Enabled = btnHuy.Enabled = false;
                 pnSV.Enabled = false;
                 gcSV.Enabled = gcLop.Enabled = true;
+                cmbCoSo.Enabled = false;
                 //if (bdsSV.Count == 0) btnXoa.Enabled = btnSua.Enabled = false;
             }
         }
@@ -91,6 +92,26 @@ namespace DXApplication1
             edtMaLop.Enabled = false;
             themSV = true;
             suaSV = false;
+
+            //lấy mã sinh viên tăng tự động
+            string query = "SELECT MAX(MASV) FROM SINHVIEN";
+            string maxMaSV = Program.ExecSqlScalar(query) as string;
+
+            // Tạo mã sinh viên mới
+            string newMaSV = "";
+            if (!string.IsNullOrEmpty(maxMaSV))
+            {
+                int maxMaSVNumber = int.Parse(maxMaSV);
+                int newMaSVNumber = maxMaSVNumber + 1;
+                newMaSV = newMaSVNumber.ToString("D3"); // Định dạng mã sinh viên mới
+            }
+            else
+            {
+                newMaSV = "001"; // Nếu chưa có sinh viên, bắt đầu từ mã số 001
+            }
+
+            // Gán mã sinh viên mới cho sinh viên được thêm
+            edtMaSV.Text = newMaSV;
         }
 
         private void btnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -101,7 +122,7 @@ namespace DXApplication1
             gcSV.Enabled = false;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnPhucHoi.Enabled = btnThoat.Enabled = btnReload.Enabled = false;
             btnGhi.Enabled = btnHuy.Enabled = true;
-            edtMaSV.Enabled = false;
+            edtMaSV.Enabled = edtMatKhau.Enabled = false;
             themSV = false;
             suaSV = true;
             cmbCoSo.Enabled = false;
@@ -309,6 +330,11 @@ namespace DXApplication1
                 this.bANGDIEMTableAdapter.Fill(this.dS.BANGDIEM);
  
             }
+        }
+
+        private void edtMaSV_EditValueChanged(object sender, EventArgs e)
+        {
+            edtMatKhau.Text = edtMaSV.Text;
         }
     }
 }

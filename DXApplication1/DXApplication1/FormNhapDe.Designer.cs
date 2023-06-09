@@ -32,7 +32,6 @@ namespace DXApplication1
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label cAUHOILabel;
             System.Windows.Forms.Label tENMHLabel;
-            System.Windows.Forms.Label mAMHLabel;
             System.Windows.Forms.Label tRINHDOLabel;
             System.Windows.Forms.Label nOIDUNGLabel;
             System.Windows.Forms.Label aLabel;
@@ -41,6 +40,8 @@ namespace DXApplication1
             System.Windows.Forms.Label dLabel;
             System.Windows.Forms.Label dAP_ANLabel;
             System.Windows.Forms.Label mAGVLabel;
+            System.Windows.Forms.Label label1;
+            System.Windows.Forms.Label mAMHLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNhapDe));
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
@@ -49,8 +50,8 @@ namespace DXApplication1
             this.btnXoa = new DevExpress.XtraBars.BarButtonItem();
             this.btnSua = new DevExpress.XtraBars.BarButtonItem();
             this.btnGhi = new DevExpress.XtraBars.BarButtonItem();
-            this.btnUndo = new DevExpress.XtraBars.BarButtonItem();
-            this.btnRedo = new DevExpress.XtraBars.BarButtonItem();
+            this.btnPhucHoi = new DevExpress.XtraBars.BarButtonItem();
+            this.btnHoanTac = new DevExpress.XtraBars.BarButtonItem();
             this.btnReload = new DevExpress.XtraBars.BarButtonItem();
             this.btnHuy = new DevExpress.XtraBars.BarButtonItem();
             this.btnThoat = new DevExpress.XtraBars.BarButtonItem();
@@ -75,8 +76,10 @@ namespace DXApplication1
             this.colD = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDAP_AN = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMAGV = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.cmbMaGV = new System.Windows.Forms.ComboBox();
+            this.pnNhapDe = new System.Windows.Forms.Panel();
+            this.tbMaGV = new System.Windows.Forms.TextBox();
+            this.edtMaMH = new DevExpress.XtraEditors.TextEdit();
+            this.tbTenGV = new System.Windows.Forms.TextBox();
             this.cmbDapAn = new System.Windows.Forms.ComboBox();
             this.edtD = new DevExpress.XtraEditors.TextEdit();
             this.edtC = new DevExpress.XtraEditors.TextEdit();
@@ -84,14 +87,16 @@ namespace DXApplication1
             this.edtA = new DevExpress.XtraEditors.TextEdit();
             this.edtNoiDung = new DevExpress.XtraEditors.TextEdit();
             this.cmbTrinhDo = new System.Windows.Forms.ComboBox();
-            this.cmbMaMH = new System.Windows.Forms.ComboBox();
-            this.bdsMonHoc = new System.Windows.Forms.BindingSource(this.components);
             this.cmbTenMH = new System.Windows.Forms.ComboBox();
             this.edtCauHoi = new DevExpress.XtraEditors.TextEdit();
+            this.bdsMonHoc = new System.Windows.Forms.BindingSource(this.components);
             this.mONHOCTableAdapter = new DXApplication1.DSTableAdapters.MONHOCTableAdapter();
+            this.bdsBaiThi = new System.Windows.Forms.BindingSource(this.components);
+            this.bAITHITableAdapter = new DXApplication1.DSTableAdapters.BAITHITableAdapter();
+            this.bdsGiaoVien = new System.Windows.Forms.BindingSource(this.components);
+            this.gIAOVIENTableAdapter = new DXApplication1.DSTableAdapters.GIAOVIENTableAdapter();
             cAUHOILabel = new System.Windows.Forms.Label();
             tENMHLabel = new System.Windows.Forms.Label();
-            mAMHLabel = new System.Windows.Forms.Label();
             tRINHDOLabel = new System.Windows.Forms.Label();
             nOIDUNGLabel = new System.Windows.Forms.Label();
             aLabel = new System.Windows.Forms.Label();
@@ -100,19 +105,24 @@ namespace DXApplication1
             dLabel = new System.Windows.Forms.Label();
             dAP_ANLabel = new System.Windows.Forms.Label();
             mAGVLabel = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
+            mAMHLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsBoDe)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcBoDe)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.pnNhapDe.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.edtMaMH.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtD.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtC.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtB.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtA.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtNoiDung.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsMonHoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtCauHoi.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsMonHoc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsBaiThi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsGiaoVien)).BeginInit();
             this.SuspendLayout();
             // 
             // cAUHOILabel
@@ -132,15 +142,6 @@ namespace DXApplication1
             tENMHLabel.Size = new System.Drawing.Size(93, 25);
             tENMHLabel.TabIndex = 2;
             tENMHLabel.Text = "TENMH:";
-            // 
-            // mAMHLabel
-            // 
-            mAMHLabel.AutoSize = true;
-            mAMHLabel.Location = new System.Drawing.Point(116, 101);
-            mAMHLabel.Name = "mAMHLabel";
-            mAMHLabel.Size = new System.Drawing.Size(83, 25);
-            mAMHLabel.TabIndex = 4;
-            mAMHLabel.Text = "MAMH:";
             // 
             // tRINHDOLabel
             // 
@@ -204,7 +205,6 @@ namespace DXApplication1
             dAP_ANLabel.Size = new System.Drawing.Size(96, 25);
             dAP_ANLabel.TabIndex = 18;
             dAP_ANLabel.Text = "DAP AN:";
-            dAP_ANLabel.Click += new System.EventHandler(this.dAP_ANLabel_Click);
             // 
             // mAGVLabel
             // 
@@ -214,6 +214,24 @@ namespace DXApplication1
             mAGVLabel.Size = new System.Drawing.Size(80, 25);
             mAGVLabel.TabIndex = 20;
             mAGVLabel.Text = "MAGV:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(106, 340);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(79, 25);
+            label1.TabIndex = 23;
+            label1.Text = "TenGV";
+            // 
+            // mAMHLabel
+            // 
+            mAMHLabel.AutoSize = true;
+            mAMHLabel.Location = new System.Drawing.Point(116, 101);
+            mAMHLabel.Name = "mAMHLabel";
+            mAMHLabel.Size = new System.Drawing.Size(83, 25);
+            mAMHLabel.TabIndex = 23;
+            mAMHLabel.Text = "MAMH:";
             // 
             // barManager1
             // 
@@ -231,8 +249,8 @@ namespace DXApplication1
             this.btnXoa,
             this.btnSua,
             this.btnGhi,
-            this.btnUndo,
-            this.btnRedo,
+            this.btnPhucHoi,
+            this.btnHoanTac,
             this.btnReload,
             this.btnHuy,
             this.btnThoat});
@@ -259,8 +277,8 @@ namespace DXApplication1
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnXoa, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnSua, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnGhi, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnUndo, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnRedo, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnPhucHoi, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnHoanTac, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnReload, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnHuy, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnThoat, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
@@ -275,6 +293,7 @@ namespace DXApplication1
             this.btnThem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThem.ImageOptions.Image")));
             this.btnThem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnThem.ImageOptions.LargeImage")));
             this.btnThem.Name = "btnThem";
+            this.btnThem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThem_ItemClick);
             // 
             // btnXoa
             // 
@@ -283,6 +302,7 @@ namespace DXApplication1
             this.btnXoa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.Image")));
             this.btnXoa.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.LargeImage")));
             this.btnXoa.Name = "btnXoa";
+            this.btnXoa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnXoa_ItemClick);
             // 
             // btnSua
             // 
@@ -291,6 +311,7 @@ namespace DXApplication1
             this.btnSua.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSua.ImageOptions.Image")));
             this.btnSua.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnSua.ImageOptions.LargeImage")));
             this.btnSua.Name = "btnSua";
+            this.btnSua.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSua_ItemClick);
             // 
             // btnGhi
             // 
@@ -299,22 +320,23 @@ namespace DXApplication1
             this.btnGhi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGhi.ImageOptions.Image")));
             this.btnGhi.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnGhi.ImageOptions.LargeImage")));
             this.btnGhi.Name = "btnGhi";
+            this.btnGhi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnGhi_ItemClick);
             // 
-            // btnUndo
+            // btnPhucHoi
             // 
-            this.btnUndo.Caption = "Phục hồi";
-            this.btnUndo.Id = 4;
-            this.btnUndo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnUndo.ImageOptions.Image")));
-            this.btnUndo.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnUndo.ImageOptions.LargeImage")));
-            this.btnUndo.Name = "btnUndo";
+            this.btnPhucHoi.Caption = "Phục hồi";
+            this.btnPhucHoi.Id = 4;
+            this.btnPhucHoi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPhucHoi.ImageOptions.Image")));
+            this.btnPhucHoi.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnPhucHoi.ImageOptions.LargeImage")));
+            this.btnPhucHoi.Name = "btnPhucHoi";
             // 
-            // btnRedo
+            // btnHoanTac
             // 
-            this.btnRedo.Caption = "Hoàn tác";
-            this.btnRedo.Id = 5;
-            this.btnRedo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnRedo.ImageOptions.Image")));
-            this.btnRedo.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnRedo.ImageOptions.LargeImage")));
-            this.btnRedo.Name = "btnRedo";
+            this.btnHoanTac.Caption = "Hoàn tác";
+            this.btnHoanTac.Id = 5;
+            this.btnHoanTac.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnHoanTac.ImageOptions.Image")));
+            this.btnHoanTac.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnHoanTac.ImageOptions.LargeImage")));
+            this.btnHoanTac.Name = "btnHoanTac";
             // 
             // btnReload
             // 
@@ -323,6 +345,7 @@ namespace DXApplication1
             this.btnReload.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.ImageOptions.Image")));
             this.btnReload.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnReload.ImageOptions.LargeImage")));
             this.btnReload.Name = "btnReload";
+            this.btnReload.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReload_ItemClick);
             // 
             // btnHuy
             // 
@@ -331,6 +354,7 @@ namespace DXApplication1
             this.btnHuy.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnHuy.ImageOptions.Image")));
             this.btnHuy.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnHuy.ImageOptions.LargeImage")));
             this.btnHuy.Name = "btnHuy";
+            this.btnHuy.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnHuy_ItemClick);
             // 
             // btnThoat
             // 
@@ -339,6 +363,7 @@ namespace DXApplication1
             this.btnThoat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThoat.ImageOptions.Image")));
             this.btnThoat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnThoat.ImageOptions.LargeImage")));
             this.btnThoat.Name = "btnThoat";
+            this.btnThoat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThoat_ItemClick);
             // 
             // bar3
             // 
@@ -364,7 +389,7 @@ namespace DXApplication1
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 910);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 935);
             this.barDockControlBottom.Manager = this.barManager1;
             this.barDockControlBottom.Size = new System.Drawing.Size(1798, 22);
             // 
@@ -374,7 +399,7 @@ namespace DXApplication1
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 67);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 843);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 868);
             // 
             // barDockControlRight
             // 
@@ -382,7 +407,7 @@ namespace DXApplication1
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(1798, 67);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 843);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 868);
             // 
             // dS
             // 
@@ -421,10 +446,11 @@ namespace DXApplication1
             this.gcBoDe.MainView = this.gridView1;
             this.gcBoDe.MenuManager = this.barManager1;
             this.gcBoDe.Name = "gcBoDe";
-            this.gcBoDe.Size = new System.Drawing.Size(1798, 457);
+            this.gcBoDe.Size = new System.Drawing.Size(1798, 432);
             this.gcBoDe.TabIndex = 5;
             this.gcBoDe.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.gcBoDe.Click += new System.EventHandler(this.gcBoDe_Click);
             // 
             // gridView1
             // 
@@ -532,44 +558,60 @@ namespace DXApplication1
             this.colMAGV.VisibleIndex = 9;
             this.colMAGV.Width = 150;
             // 
-            // panel1
+            // pnNhapDe
             // 
-            this.panel1.Controls.Add(mAGVLabel);
-            this.panel1.Controls.Add(this.cmbMaGV);
-            this.panel1.Controls.Add(dAP_ANLabel);
-            this.panel1.Controls.Add(this.cmbDapAn);
-            this.panel1.Controls.Add(dLabel);
-            this.panel1.Controls.Add(this.edtD);
-            this.panel1.Controls.Add(cLabel);
-            this.panel1.Controls.Add(this.edtC);
-            this.panel1.Controls.Add(bLabel);
-            this.panel1.Controls.Add(this.edtB);
-            this.panel1.Controls.Add(aLabel);
-            this.panel1.Controls.Add(this.edtA);
-            this.panel1.Controls.Add(nOIDUNGLabel);
-            this.panel1.Controls.Add(this.edtNoiDung);
-            this.panel1.Controls.Add(tRINHDOLabel);
-            this.panel1.Controls.Add(this.cmbTrinhDo);
-            this.panel1.Controls.Add(mAMHLabel);
-            this.panel1.Controls.Add(this.cmbMaMH);
-            this.panel1.Controls.Add(tENMHLabel);
-            this.panel1.Controls.Add(this.cmbTenMH);
-            this.panel1.Controls.Add(cAUHOILabel);
-            this.panel1.Controls.Add(this.edtCauHoi);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 524);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1798, 386);
-            this.panel1.TabIndex = 11;
+            this.pnNhapDe.Controls.Add(this.tbMaGV);
+            this.pnNhapDe.Controls.Add(mAMHLabel);
+            this.pnNhapDe.Controls.Add(this.edtMaMH);
+            this.pnNhapDe.Controls.Add(label1);
+            this.pnNhapDe.Controls.Add(this.tbTenGV);
+            this.pnNhapDe.Controls.Add(mAGVLabel);
+            this.pnNhapDe.Controls.Add(dAP_ANLabel);
+            this.pnNhapDe.Controls.Add(this.cmbDapAn);
+            this.pnNhapDe.Controls.Add(dLabel);
+            this.pnNhapDe.Controls.Add(this.edtD);
+            this.pnNhapDe.Controls.Add(cLabel);
+            this.pnNhapDe.Controls.Add(this.edtC);
+            this.pnNhapDe.Controls.Add(bLabel);
+            this.pnNhapDe.Controls.Add(this.edtB);
+            this.pnNhapDe.Controls.Add(aLabel);
+            this.pnNhapDe.Controls.Add(this.edtA);
+            this.pnNhapDe.Controls.Add(nOIDUNGLabel);
+            this.pnNhapDe.Controls.Add(this.edtNoiDung);
+            this.pnNhapDe.Controls.Add(tRINHDOLabel);
+            this.pnNhapDe.Controls.Add(this.cmbTrinhDo);
+            this.pnNhapDe.Controls.Add(tENMHLabel);
+            this.pnNhapDe.Controls.Add(this.cmbTenMH);
+            this.pnNhapDe.Controls.Add(cAUHOILabel);
+            this.pnNhapDe.Controls.Add(this.edtCauHoi);
+            this.pnNhapDe.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnNhapDe.Location = new System.Drawing.Point(0, 499);
+            this.pnNhapDe.Name = "pnNhapDe";
+            this.pnNhapDe.Size = new System.Drawing.Size(1798, 436);
+            this.pnNhapDe.TabIndex = 11;
             // 
-            // cmbMaGV
+            // tbMaGV
             // 
-            this.cmbMaGV.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsBoDe, "MAGV", true));
-            this.cmbMaGV.FormattingEnabled = true;
-            this.cmbMaGV.Location = new System.Drawing.Point(205, 286);
-            this.cmbMaGV.Name = "cmbMaGV";
-            this.cmbMaGV.Size = new System.Drawing.Size(366, 33);
-            this.cmbMaGV.TabIndex = 21;
+            this.tbMaGV.Location = new System.Drawing.Point(205, 289);
+            this.tbMaGV.Name = "tbMaGV";
+            this.tbMaGV.Size = new System.Drawing.Size(366, 31);
+            this.tbMaGV.TabIndex = 25;
+            // 
+            // edtMaMH
+            // 
+            this.edtMaMH.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsBoDe, "MAMH", true));
+            this.edtMaMH.Location = new System.Drawing.Point(205, 98);
+            this.edtMaMH.MenuManager = this.barManager1;
+            this.edtMaMH.Name = "edtMaMH";
+            this.edtMaMH.Size = new System.Drawing.Size(366, 40);
+            this.edtMaMH.TabIndex = 24;
+            // 
+            // tbTenGV
+            // 
+            this.tbTenGV.Location = new System.Drawing.Point(205, 337);
+            this.tbTenGV.Name = "tbTenGV";
+            this.tbTenGV.Size = new System.Drawing.Size(366, 31);
+            this.tbTenGV.TabIndex = 22;
             // 
             // cmbDapAn
             // 
@@ -579,7 +621,6 @@ namespace DXApplication1
             this.cmbDapAn.Name = "cmbDapAn";
             this.cmbDapAn.Size = new System.Drawing.Size(158, 33);
             this.cmbDapAn.TabIndex = 19;
-            this.cmbDapAn.SelectedIndexChanged += new System.EventHandler(this.dAP_ANComboBox_SelectedIndexChanged);
             // 
             // edtD
             // 
@@ -635,28 +676,14 @@ namespace DXApplication1
             this.cmbTrinhDo.Size = new System.Drawing.Size(366, 33);
             this.cmbTrinhDo.TabIndex = 7;
             // 
-            // cmbMaMH
-            // 
-            this.cmbMaMH.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsMonHoc, "MAMH", true));
-            this.cmbMaMH.FormattingEnabled = true;
-            this.cmbMaMH.Location = new System.Drawing.Point(205, 98);
-            this.cmbMaMH.Name = "cmbMaMH";
-            this.cmbMaMH.Size = new System.Drawing.Size(366, 33);
-            this.cmbMaMH.TabIndex = 5;
-            // 
-            // bdsMonHoc
-            // 
-            this.bdsMonHoc.DataMember = "MONHOC";
-            this.bdsMonHoc.DataSource = this.dS;
-            // 
             // cmbTenMH
             // 
-            this.cmbTenMH.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsMonHoc, "TENMH", true));
             this.cmbTenMH.FormattingEnabled = true;
             this.cmbTenMH.Location = new System.Drawing.Point(205, 160);
             this.cmbTenMH.Name = "cmbTenMH";
             this.cmbTenMH.Size = new System.Drawing.Size(366, 33);
             this.cmbTenMH.TabIndex = 3;
+            this.cmbTenMH.SelectedIndexChanged += new System.EventHandler(this.cmbTenMH_SelectedIndexChanged);
             // 
             // edtCauHoi
             // 
@@ -667,16 +694,39 @@ namespace DXApplication1
             this.edtCauHoi.Size = new System.Drawing.Size(366, 40);
             this.edtCauHoi.TabIndex = 1;
             // 
+            // bdsMonHoc
+            // 
+            this.bdsMonHoc.DataMember = "MONHOC";
+            this.bdsMonHoc.DataSource = this.dS;
+            // 
             // mONHOCTableAdapter
             // 
             this.mONHOCTableAdapter.ClearBeforeFill = true;
+            // 
+            // bdsBaiThi
+            // 
+            this.bdsBaiThi.DataMember = "FK_BAITHI_BODE1";
+            this.bdsBaiThi.DataSource = this.bdsBoDe;
+            // 
+            // bAITHITableAdapter
+            // 
+            this.bAITHITableAdapter.ClearBeforeFill = true;
+            // 
+            // bdsGiaoVien
+            // 
+            this.bdsGiaoVien.DataMember = "GIAOVIEN";
+            this.bdsGiaoVien.DataSource = this.dS;
+            // 
+            // gIAOVIENTableAdapter
+            // 
+            this.gIAOVIENTableAdapter.ClearBeforeFill = true;
             // 
             // FormNhapDe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1798, 932);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(1798, 957);
+            this.Controls.Add(this.pnNhapDe);
             this.Controls.Add(this.gcBoDe);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
@@ -690,15 +740,18 @@ namespace DXApplication1
             ((System.ComponentModel.ISupportInitialize)(this.bdsBoDe)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcBoDe)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.pnNhapDe.ResumeLayout(false);
+            this.pnNhapDe.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.edtMaMH.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtD.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtC.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtB.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtA.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtNoiDung.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsMonHoc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtCauHoi.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsMonHoc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsBaiThi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsGiaoVien)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -718,8 +771,8 @@ namespace DXApplication1
         private DevExpress.XtraBars.BarButtonItem btnXoa;
         private DevExpress.XtraBars.BarButtonItem btnSua;
         private DevExpress.XtraBars.BarButtonItem btnGhi;
-        private DevExpress.XtraBars.BarButtonItem btnUndo;
-        private DevExpress.XtraBars.BarButtonItem btnRedo;
+        private DevExpress.XtraBars.BarButtonItem btnPhucHoi;
+        private DevExpress.XtraBars.BarButtonItem btnHoanTac;
         private DevExpress.XtraBars.BarButtonItem btnReload;
         private DevExpress.XtraBars.BarButtonItem btnHuy;
         private DevExpress.XtraBars.BarButtonItem btnThoat;
@@ -739,11 +792,10 @@ namespace DXApplication1
         private DevExpress.XtraGrid.Columns.GridColumn colD;
         private DevExpress.XtraGrid.Columns.GridColumn colDAP_AN;
         private DevExpress.XtraGrid.Columns.GridColumn colMAGV;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnNhapDe;
         private DevExpress.XtraEditors.TextEdit edtCauHoi;
         private System.Windows.Forms.BindingSource bdsMonHoc;
         private DSTableAdapters.MONHOCTableAdapter mONHOCTableAdapter;
-        private System.Windows.Forms.ComboBox cmbMaGV;
         private System.Windows.Forms.ComboBox cmbDapAn;
         private DevExpress.XtraEditors.TextEdit edtD;
         private DevExpress.XtraEditors.TextEdit edtC;
@@ -751,7 +803,13 @@ namespace DXApplication1
         private DevExpress.XtraEditors.TextEdit edtA;
         private DevExpress.XtraEditors.TextEdit edtNoiDung;
         private System.Windows.Forms.ComboBox cmbTrinhDo;
-        private System.Windows.Forms.ComboBox cmbMaMH;
         private System.Windows.Forms.ComboBox cmbTenMH;
+        private System.Windows.Forms.TextBox tbTenGV;
+        private DevExpress.XtraEditors.TextEdit edtMaMH;
+        private System.Windows.Forms.BindingSource bdsBaiThi;
+        private DSTableAdapters.BAITHITableAdapter bAITHITableAdapter;
+        private System.Windows.Forms.BindingSource bdsGiaoVien;
+        private DSTableAdapters.GIAOVIENTableAdapter gIAOVIENTableAdapter;
+        private System.Windows.Forms.TextBox tbMaGV;
     }
 }

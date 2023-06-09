@@ -548,6 +548,7 @@ namespace DXApplication1
             this.edtMaSV.Name = "edtMaSV";
             this.edtMaSV.Size = new System.Drawing.Size(377, 40);
             this.edtMaSV.TabIndex = 7;
+            this.edtMaSV.EditValueChanged += new System.EventHandler(this.edtMaSV_EditValueChanged);
             // 
             // edtHo
             // 

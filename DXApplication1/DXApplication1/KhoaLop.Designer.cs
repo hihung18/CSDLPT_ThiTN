@@ -387,12 +387,12 @@ namespace DXApplication1
             this.gcLop.DataSource = this.bdsLop;
             this.gcLop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcLop.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.gcLop.Location = new System.Drawing.Point(0, 42);
+            this.gcLop.Location = new System.Drawing.Point(0, 40);
             this.gcLop.MainView = this.gridView2;
             this.gcLop.Margin = new System.Windows.Forms.Padding(4);
             this.gcLop.MenuManager = this.barManager1;
             this.gcLop.Name = "gcLop";
-            this.gcLop.Size = new System.Drawing.Size(913, 353);
+            this.gcLop.Size = new System.Drawing.Size(913, 355);
             this.gcLop.TabIndex = 0;
             this.gcLop.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -451,14 +451,13 @@ namespace DXApplication1
             // 
             // mSLop
             // 
-            this.mSLop.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.mSLop.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.mSLop.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuLop});
             this.mSLop.Location = new System.Drawing.Point(0, 0);
             this.mSLop.Name = "mSLop";
             this.mSLop.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.mSLop.Size = new System.Drawing.Size(913, 42);
+            this.mSLop.Size = new System.Drawing.Size(913, 40);
             this.mSLop.TabIndex = 1;
             this.mSLop.Text = "menuStrip1";
             // 
@@ -475,21 +474,21 @@ namespace DXApplication1
             // menuItermThem
             // 
             this.menuItermThem.Name = "menuItermThem";
-            this.menuItermThem.Size = new System.Drawing.Size(359, 44);
+            this.menuItermThem.Size = new System.Drawing.Size(210, 44);
             this.menuItermThem.Text = "Thêm";
             this.menuItermThem.Click += new System.EventHandler(this.menuItermThem_Click);
             // 
             // menuItermXoa
             // 
             this.menuItermXoa.Name = "menuItermXoa";
-            this.menuItermXoa.Size = new System.Drawing.Size(359, 44);
+            this.menuItermXoa.Size = new System.Drawing.Size(210, 44);
             this.menuItermXoa.Text = "Xóa";
             this.menuItermXoa.Click += new System.EventHandler(this.menuItermXoa_Click);
             // 
             // menuItermSua
             // 
             this.menuItermSua.Name = "menuItermSua";
-            this.menuItermSua.Size = new System.Drawing.Size(359, 44);
+            this.menuItermSua.Size = new System.Drawing.Size(210, 44);
             this.menuItermSua.Text = "Sửa";
             this.menuItermSua.Click += new System.EventHandler(this.menuItermSua_Click);
             // 

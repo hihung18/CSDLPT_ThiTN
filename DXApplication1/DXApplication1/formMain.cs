@@ -36,6 +36,8 @@ namespace DXApplication1
                 barBtnDangNhap.Enabled = barBtnTaoTaiKhoan.Enabled = false;
                 barBtnDangXuat.Enabled = true;
                 ribnDanhMuc.Visible = ribnBaoCao.Visible = true;
+                btnMH.Enabled = btnKhoaLop.Enabled =  btnSinhVien.Enabled = btnGiaoVien.Enabled = btnDangKiThi.Enabled = btnNhapDe.Enabled = false;
+                btnThi.Enabled = true;
             }
             else if (Program.mGroup == "GIANGVIEN")
             {
@@ -43,6 +45,9 @@ namespace DXApplication1
                 barBtnDangXuat.Enabled = true;
                 ribnDanhMuc.Visible = ribnBaoCao.Visible = true;
                 btnMH.Enabled = btnKhoaLop.Enabled = btnThi.Enabled = true;
+                btnMH.Enabled = btnKhoaLop.Enabled = btnSinhVien.Enabled = btnGiaoVien.Enabled = btnDangKiThi.Enabled =  false;
+                btnThi.Enabled = btnNhapDe.Enabled =  true;
+
             }
             else if (Program.mGroup == "TRUONG")
             {

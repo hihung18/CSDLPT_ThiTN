@@ -171,6 +171,17 @@ namespace DXApplication1
                 return ex.State; // trang thai lỗi gởi từ RAISERROR trong SQL Server qua
             }
         }
+        public static object ExecSqlScalar(string query)
+        {
+            using (SqlConnection connection = new SqlConnection(Program.connstr))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.CommandType = CommandType.Text;
+                connection.Open();
+                object result = command.ExecuteScalar();
+                return result;
+            }
+        }
         [STAThread]
         static void Main()
         {
