@@ -23,20 +23,31 @@ namespace DXApplication1
 
         private void FormNhapDe_Load(object sender, EventArgs e)
         {
+            //this.bODETableAdapter.Connection.ConnectionString = Program.connstr;
+            //this.bODETableAdapter.Fill(this.dS.BODE);
+            string username = Program.username;
+            string query = "SELECT * FROM BODE WHERE MaGV = @username";
 
-            this.bODETableAdapter.Connection.ConnectionString = Program.connstr;
-            this.bODETableAdapter.Fill(this.dS.BODE);
+            using (SqlConnection connection = new SqlConnection(Program.connstr))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@username", username);
 
-            //string username = Program.username; // Lấy username từ đăng nhập
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                DataSet dataSet = new DataSet();
 
-            //// Thiết lập câu truy vấn SQL để chỉ lấy các hàng có MAGV trùng khớp với username
-            //string query = "SELECT * FROM BODE WHERE MAGV = @MAGV";
-            //SqlCommand command = new SqlCommand(query, bODETableAdapter.Connection);
-            //command.Parameters.AddWithValue("@MAGV", username);
+                adapter.Fill(dataSet, "BODE");
 
-            //// Sử dụng SqlDataAdapter để thực thi câu truy vấn và điền kết quả vào bảng bODE trong DataSet
-            //SqlDataAdapter adapter = new SqlDataAdapter(command);
-            //adapter.Fill(dS, "bODE");
+                this.bODETableAdapter.ClearBeforeFill = false; // Tắt chức năng xóa dữ liệu trước khi điền vào
+                this.dS.BODE.Merge(dataSet.Tables["BODE"]);
+
+                // Cập nhật dữ liệu trong BodeTableAdapter
+                this.bODETableAdapter.Update(this.dS.BODE);
+
+                // Refresh hiển thị của gcBoDe (GridControl)
+                gcBoDe.Refresh();
+            }
+
 
             this.mONHOCTableAdapter.Connection.ConnectionString = Program.connstr;
             this.mONHOCTableAdapter.Fill(this.dS.MONHOC);
@@ -58,7 +69,7 @@ namespace DXApplication1
             tbTenGV.Text = Program.mHoten;
             tbMaGV.Text = Program.username;
 
-            string maMH = ((DataRowView)bdsBoDe[bdsBoDe.Position])["MAMH"].ToString();
+            string maMH = ((DataRowView)bdsBoDe[bdsBoDe.Position])["MAMH"].ToString();          
             dt = Program.ExecSqlDataTable("SELECT MAMH,TENMH FROM MONHOC");
             cmbTenMH.DataSource = dt;
             cmbTenMH.DisplayMember = "TENMH";
@@ -72,6 +83,7 @@ namespace DXApplication1
                     break;
                 }
             }
+
             if (Program.mGroup == "TRUONG")
             {
                 btnGhi.Enabled = btnThem.Enabled = btnPhucHoi.Enabled = btnXoa.Enabled = btnSua.Enabled = btnHuy.Enabled = cmbDapAn.Enabled = false;
@@ -90,6 +102,7 @@ namespace DXApplication1
                 }
 
             }
+            
 
         }
         private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -102,9 +115,10 @@ namespace DXApplication1
             ((DataRowView)bdsBoDe[bdsBoDe.Position])["MAGV"] = Program.username; // Mã gv khi đăng nhập vào
             tbTenGV.Text = Program.mHoten; // tên gv tạo đề
 
-            // Tạo mã câu hỏi
-            int MaCH = int.Parse(((DataRowView)bdsBoDe[bdsBoDe.Count - 2])["CAUHOI"].ToString()) + 1;
-            ((DataRowView)bdsBoDe[bdsBoDe.Position])["CAUHOI"] = MaCH.ToString();
+            string query = "SELECT MAX(CAUHOI) FROM BODE";
+            int maxMaCH = (int)Program.ExecSqlScalar(query);
+            int newMaCH = maxMaCH + 1;
+            edtCauHoi.Text = newMaCH.ToString();
 
             dt = Program.ExecSqlDataTable("SELECT MAMH,TENMH FROM MONHOC");
             cmbTenMH.DataSource = dt;
@@ -219,8 +233,7 @@ namespace DXApplication1
 
         private void gcBoDe_Click(object sender, EventArgs e)
         {         
-            if (bdsBoDe.Count == 0 || Program.mGroup == "TRUONG"
-                || (Program.username != ((DataRowView)bdsBoDe[bdsBoDe.Position])["MAGV"].ToString().Trim() && Program.mGroup == "GIANGVIEN"))
+            if (bdsBoDe.Count == 0 || Program.mGroup == "TRUONG" || (Program.username != ((DataRowView)bdsBoDe[bdsBoDe.Position])["MAGV"].ToString().Trim() && Program.mGroup == "GIANGVIEN"))
             {
                 btnXoa.Enabled = false;
                 btnSua.Enabled = false;
@@ -322,10 +335,30 @@ namespace DXApplication1
 
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            this.bODETableAdapter.Connection.ConnectionString = Program.connstr;
-            this.bODETableAdapter.Fill(this.dS.BODE);
+            //this.bODETableAdapter.Connection.ConnectionString = Program.connstr;
+            //this.bODETableAdapter.Fill(this.dS.BODE);
+            string username = Program.username;
+            string query = "SELECT * FROM BODE WHERE MaGV = @username";
 
-            
+            using (SqlConnection connection = new SqlConnection(Program.connstr))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@username", username);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                DataSet dataSet = new DataSet();
+
+                adapter.Fill(dataSet, "BODE");
+
+                this.bODETableAdapter.ClearBeforeFill = false; // Tắt chức năng xóa dữ liệu trước khi điền vào
+                this.dS.BODE.Merge(dataSet.Tables["BODE"]);
+
+                // Cập nhật dữ liệu trong BodeTableAdapter
+                this.bODETableAdapter.Update(this.dS.BODE);
+
+                // Refresh hiển thị của gcBoDe (GridControl)
+                gcBoDe.Refresh();
+            }
 
             DataView dataView = new DataView(this.dS.BODE);
             dataView.RowFilter = "MAGV = '" + Program.username + "'";
@@ -366,6 +399,7 @@ namespace DXApplication1
                 }
 
             }
+           
             tbTenGV.Text = Program.mHoten;
             tbMaGV.Text = Program.username;
         }
