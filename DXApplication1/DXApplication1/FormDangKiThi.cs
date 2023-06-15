@@ -80,6 +80,7 @@ namespace DXApplication1
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnPhucHoi.Enabled = btnThoat.Enabled = false;
             btnGhi.Enabled = btnHuy.Enabled = true;
             pnGVDK.Enabled = true;
+            edtMaLop.Enabled = edtMaMH.Enabled = cmbTenMH.Enabled = false;
             gcGVDK.Enabled = gcLop.Enabled = gcMonHoc.Enabled = false;
 
             btnReload.Enabled = false;
@@ -99,14 +100,14 @@ namespace DXApplication1
 
             cmbLanThi.Items.Add("1");
             cmbLanThi.Items.Add("2");
-            cmbLanThi.Items.Add("3");
             cmbLanThi.SelectedIndex = 0;
 
+            cmbSoCauThi.Items.Add("10");
             cmbSoCauThi.Items.Add("20");
-            cmbSoCauThi.Items.Add("30");
-            cmbSoCauThi.Items.Add("40");
+            cmbSoCauThi.Items.Add("30");         
             cmbSoCauThi.Items.Add("50");
             cmbSoCauThi.Items.Add("60");
+            cmbSoCauThi.Items.Add("100");
             cmbSoCauThi.SelectedIndex = 0;
 
             cmbThoiGian.Items.Add("15");
@@ -192,44 +193,62 @@ namespace DXApplication1
         {
             if (edtMaMH.Text == "")
             {
-                MessageBox.Show("Mã Môn học không được trống!", "Lỗi", MessageBoxButtons.OK);
+                MessageBox.Show("Mã Môn học không được trống!", "Lỗi mã môm học", MessageBoxButtons.OK);
                 edtMaMH.Focus();
                 return;
             }
             if (edtMaLop.Text == "")
             {
-                MessageBox.Show("Mã Lớp không được trống!", "Lỗi", MessageBoxButtons.OK);
+                MessageBox.Show("Mã Lớp không được trống!", "Lỗi mã lớp", MessageBoxButtons.OK);
                 edtMaLop.Focus();
                 return;
             }
             if (cmbSoCauThi.Text == "")
             {
-                MessageBox.Show("Số câu thi không được trống!", "Lỗi", MessageBoxButtons.OK);
+                MessageBox.Show("Số câu thi không được trống!", "Lỗi số câu thi", MessageBoxButtons.OK);
                 cmbSoCauThi.Focus();
+                return;
+            }
+            if (int.Parse(cmbSoCauThi.Text) < 10 || int.Parse(cmbSoCauThi.Text) > 100)
+            {
+                MessageBox.Show("Số câu thi phải từ 10 đến 100 câu  !", "Lỗi số câu thi", MessageBoxButtons.OK);
+                cmbLanThi.Focus();
                 return;
             }
             if (cmbTrinhDo.Text == "")
             {
-                MessageBox.Show("Trình độ không được trống!", "Lỗi", MessageBoxButtons.OK);
+                MessageBox.Show("Trình độ không được trống!", "Lỗi trình độ", MessageBoxButtons.OK);
                 cmbTrinhDo.Focus();
                 return;
             }
             if (dtNgayThi.Text == "")
             {
-                MessageBox.Show("Ngày thi không được trống!", "Lỗi", MessageBoxButtons.OK);
+                MessageBox.Show("Ngày thi không được trống!", "Lỗi ngày thi", MessageBoxButtons.OK);
                 dtNgayThi.Focus();
                 return;
             }
             if (cmbLanThi.Text == "")
             {
-                MessageBox.Show("Lần thi không được trống!", "Lỗi", MessageBoxButtons.OK);
+                MessageBox.Show("Lần thi không được trống!", "Lỗi lần thi", MessageBoxButtons.OK);
+                cmbLanThi.Focus();
+                return;
+            }
+            if (int.Parse(cmbLanThi.Text) < 1 || int.Parse(cmbLanThi.Text) > 2)
+            {
+                MessageBox.Show("Lần thi chỉ là 1 hoặc 2 !", "Lỗi lần thi", MessageBoxButtons.OK);
                 cmbLanThi.Focus();
                 return;
             }
             if (cmbThoiGian.Text == "")
             {
-                MessageBox.Show("Thời gian không được trống!", "Lỗi", MessageBoxButtons.OK);
+                MessageBox.Show("Thời gian không được trống!", "Lỗi thời gian thi", MessageBoxButtons.OK);
                 cmbThoiGian.Focus();
+                return;
+            }
+            if (int.Parse(cmbThoiGian.Text) < 15 || int.Parse(cmbThoiGian.Text) > 60)
+            {
+                MessageBox.Show("Thời gian thi phải từ 15 đến 60 phút  !", "Lỗi thời gian thi", MessageBoxButtons.OK);
+                cmbLanThi.Focus();
                 return;
             }
 
@@ -237,7 +256,7 @@ namespace DXApplication1
             if (DateTime.Compare(DateTime.Parse(dtNgayThi.Text.ToString()),
                 DateTime.Parse(DateTime.Now.ToShortDateString())) < 0)
             {
-                MessageBox.Show("Ngày thi phải lớn hơn hoặc bằng ngày hiện tại!", "Lỗi", MessageBoxButtons.OK);
+                MessageBox.Show("Ngày thi phải lớn hơn hoặc bằng ngày hiện tại!", "Lỗi ngày thi", MessageBoxButtons.OK);
                 return;
             }
             try
@@ -355,45 +374,19 @@ namespace DXApplication1
             }
             else
             {
-
-
                 dS.EnforceConstraints = false;
-                this.gIAOVIEN_DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
-                this.gIAOVIEN_DANGKYTableAdapter.Fill(this.dS.GIAOVIEN_DANGKY);
                 this.lOPTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.lOPTableAdapter.Fill(this.dS.LOP);
+                this.cOSOTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.cOSOTableAdapter.Fill(this.dS.COSO);
                 this.mONHOCTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.mONHOCTableAdapter.Fill(this.dS.MONHOC);
+                this.gIAOVIEN_DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.gIAOVIEN_DANGKYTableAdapter.Fill(this.dS.GIAOVIEN_DANGKY);
                 this.gIAOVIENTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.gIAOVIENTableAdapter.Fill(this.dS.GIAOVIEN);
             }
         }
-        //private void cmbTenMH_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    if (cmbTenMH.SelectedItem != null)
-        //    {
-        //        DataRowView selectedRow = cmbTenMH.SelectedItem as DataRowView;
-        //        string tenMH = selectedRow["TENMH"].ToString();
-        //        string maMH = GetMaMHFromTenMH(tenMH); // Hàm này để lấy mã môn học từ tên môn học
-        //        edtMaMH.Text = maMH;
-        //    }
-        //}
-        //private string GetMaMHFromTenMH(string tenMH)
-        //{
-        //    string maMH = string.Empty;
-        //    string query = "SELECT MAMH FROM MONHOC WHERE TENMH = @TenMH";
-        //    using (SqlCommand command = new SqlCommand(query, Program.conn))
-        //    {
-        //        command.Parameters.AddWithValue("@TenMH", tenMH);
-        //        if (Program.conn.State == ConnectionState.Closed)
-        //            Program.conn.Open();
-        //        object result = command.ExecuteScalar();
-        //        if (result != null)
-        //            maMH = result.ToString();
-        //        Program.conn.Close();
-        //    }
-        //    return maMH;
-        //}
 
         private void cmbTenGV_SelectedIndexChanged(object sender, EventArgs e)
         {

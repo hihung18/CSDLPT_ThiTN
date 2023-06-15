@@ -18,9 +18,9 @@ namespace DXApplication1
 
         public static SqlDataReader myReader;
         public static String servername = "";
-        public static String username;
-        public static String password;
-        public static String mlogin;
+        public static String username = "";
+        public static String password = "";
+        public static String mlogin = "";
         public static Boolean dangXuat = false;
 
         public static String database = "TN_CSDLPT";

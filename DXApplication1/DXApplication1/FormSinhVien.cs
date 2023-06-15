@@ -24,16 +24,16 @@ namespace DXApplication1
             if (Program.mGroup == "TRUONG")
             {
                 cmbCoSo.Enabled = true;
-                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnPhucHoi.Enabled = btnHuy.Enabled = false;
+                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnPhucHoi.Enabled = btnHuy.Enabled = btnHoanTac.Enabled = false;
                 pnSV.Enabled = false;
                 gcSV.Enabled = gcLop.Enabled = true;
             }
             else
-           if (Program.mGroup == "GIANGVIEN")
+            if (Program.mGroup == "GIANGVIEN")
             {
 
                 cmbCoSo.Enabled = false;
-                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnPhucHoi.Enabled = false;
+                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnPhucHoi.Enabled = btnHoanTac.Enabled = false;
 
                 btnHuy.Enabled = false;
                 pnSV.Enabled = false;
@@ -43,18 +43,22 @@ namespace DXApplication1
             {
                 //cmbCoSo.Enabled = false;
                 btnReload.Enabled = btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = true;
-                btnPhucHoi.Enabled = btnGhi.Enabled = btnHuy.Enabled = false;
+                btnPhucHoi.Enabled = btnGhi.Enabled = btnHuy.Enabled = btnHoanTac.Enabled = false;
                 pnSV.Enabled = false;
                 gcSV.Enabled = gcLop.Enabled = true;
                 cmbCoSo.Enabled = false;
                 //if (bdsSV.Count == 0) btnXoa.Enabled = btnSua.Enabled = false;
             }
+            if (Program.mCoso == 2)
+            {
+                cmbCoSo.Enabled = false;
+                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnPhucHoi.Enabled = btnHoanTac.Enabled = btnHuy.Enabled = false;
+                pnSV.Enabled = false;
+                gcSV.Enabled = gcLop.Enabled = true;
+            }
         }
         private void FormSinhVien_Load(object sender, EventArgs e)
         {
-
-
-
             dS.EnforceConstraints = false;
 
 
@@ -299,6 +303,7 @@ namespace DXApplication1
             {
                 return;
             }
+
             if (cmbCoSo.SelectedValue.ToString() == "System.Data.DataRowView")
                 return;
             Program.servername = cmbCoSo.SelectedValue.ToString();
@@ -307,16 +312,19 @@ namespace DXApplication1
             {
                 Program.mlogin = Program.remoteLogin;
                 Program.password = Program.remotePassword;
+                //MessageBox.Show("Lỗi kết nối về cơ sở mới!: mlogin: " + cmbCoSo.SelectedIndex + ", pass: " + Program.password + ", mCoSo: " + Program.mCoso + ", mLogin: " + Program.mlogin);
             }
             else
             {
                 Program.mlogin = Program.loginDN;
                 Program.password = Program.passwordDN;
+                //Program.mlogin = Program.remoteLogin;
+                //Program.password = Program.remotePassword;
             }
-            if (Program.KetNoi() == 0)
-            {
-                MessageBox.Show("Lỗi kết nối về phòng ban mới!");
-            }
+
+            if (Program.dangXuat == false && Program.KetNoi() == 0)
+                MessageBox.Show("Lỗi kết nối về cơ sở mới!: mlogin: " + cmbCoSo.SelectedIndex + ", pass: " + Program.password + ", mCoSo: " + Program.mCoso);
+
             else
             {
                 dS.EnforceConstraints = false;

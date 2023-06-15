@@ -24,8 +24,8 @@ namespace DXApplication1
 
         private void FormGiaoVien_Load(object sender, EventArgs e)
         {
-            
-            
+
+
             dS.EnforceConstraints = false;
             this.kHOATableAdapter.Connection.ConnectionString = Program.connstr;
             this.kHOATableAdapter.Fill(this.dS.KHOA);
@@ -41,7 +41,7 @@ namespace DXApplication1
             {
                 cmbCoSo.Enabled = true;
                 btnGhi.Enabled = btnThem.Enabled = btnPhucHoi.Enabled = btnXoa.Enabled = btnSua.Enabled = btnHuy.Enabled = false;
-                edtMaGV.Enabled = edtDiaChi.Enabled = edtHo.Enabled = edtTen.Enabled  = edtMaKhoa.Enabled = false;
+                edtMaGV.Enabled = edtDiaChi.Enabled = edtHo.Enabled = edtTen.Enabled = edtMaKhoa.Enabled = false;
 
             }
             if (Program.mGroup == "GIANGVIEN")
@@ -74,6 +74,11 @@ namespace DXApplication1
                 btnXoa.Enabled = true;
                 btnSua.Enabled = true;
             }
+            cmbCoSo.DataSource = Program.bds_dspm;
+            cmbCoSo.DisplayMember = "TENCS";
+            cmbCoSo.ValueMember = "TENSERVER";
+            cmbCoSo.SelectedIndex = Program.mCoso;
+            Program.servername = cmbCoSo.SelectedValue.ToString();
 
         }
 
@@ -117,7 +122,7 @@ namespace DXApplication1
 
         private void btnHuy_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            edtMaGV.Enabled = edtDiaChi.Enabled = edtHo.Enabled = edtMaKhoa.Enabled = edtTen.Enabled  = false;
+            edtMaGV.Enabled = edtDiaChi.Enabled = edtHo.Enabled = edtMaKhoa.Enabled = edtTen.Enabled = false;
 
             if (themGV) bdsGV.RemoveCurrent(); else bdsGV.CancelEdit();
             bdsGV.Position = vitri;
@@ -188,7 +193,7 @@ namespace DXApplication1
                 }
                 catch (Exception ex)
                 {
-                    
+
                     MessageBox.Show("Lỗi xóa giáo viên \n" + ex.Message, "", MessageBoxButtons.OK);
                     this.gIAOVIENTableAdapter.Connection.ConnectionString = Program.connstr;
                     this.gIAOVIENTableAdapter.Update(this.dS.GIAOVIEN);
@@ -201,7 +206,7 @@ namespace DXApplication1
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            edtMaGV.Enabled = edtDiaChi.Enabled = edtHo.Enabled = edtTen.Enabled = edtMaKhoa.Enabled= false;
+            edtMaGV.Enabled = edtDiaChi.Enabled = edtHo.Enabled = edtTen.Enabled = edtMaKhoa.Enabled = false;
             if (edtMaGV.Text == "")
             {
                 MessageBox.Show("Mã giáo viên không được trống!", "Lỗi", MessageBoxButtons.OK);
@@ -240,7 +245,7 @@ namespace DXApplication1
                 if (themGV)
                 {
                     MessageBox.Show("Đã thêm Giáo viên thành công", "", MessageBoxButtons.OK);
-                    
+
                 }
                 else
                 {

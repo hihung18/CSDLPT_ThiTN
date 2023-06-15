@@ -272,7 +272,7 @@ namespace DXApplication1
             // 
             // btnHoanTac
             // 
-            this.btnHoanTac.Caption = "hoàn tác";
+            this.btnHoanTac.Caption = "Hoàn tác";
             this.btnHoanTac.Id = 5;
             this.btnHoanTac.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnHoanTac.ImageOptions.Image")));
             this.btnHoanTac.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnHoanTac.ImageOptions.LargeImage")));
@@ -387,12 +387,12 @@ namespace DXApplication1
             this.gcLop.DataSource = this.bdsLop;
             this.gcLop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcLop.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.gcLop.Location = new System.Drawing.Point(0, 40);
+            this.gcLop.Location = new System.Drawing.Point(0, 48);
             this.gcLop.MainView = this.gridView2;
             this.gcLop.Margin = new System.Windows.Forms.Padding(4);
             this.gcLop.MenuManager = this.barManager1;
             this.gcLop.Name = "gcLop";
-            this.gcLop.Size = new System.Drawing.Size(913, 355);
+            this.gcLop.Size = new System.Drawing.Size(913, 347);
             this.gcLop.TabIndex = 0;
             this.gcLop.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -451,13 +451,14 @@ namespace DXApplication1
             // 
             // mSLop
             // 
+            this.mSLop.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.mSLop.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.mSLop.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuLop});
             this.mSLop.Location = new System.Drawing.Point(0, 0);
             this.mSLop.Name = "mSLop";
             this.mSLop.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.mSLop.Size = new System.Drawing.Size(913, 40);
+            this.mSLop.Size = new System.Drawing.Size(913, 48);
             this.mSLop.TabIndex = 1;
             this.mSLop.Text = "menuStrip1";
             // 

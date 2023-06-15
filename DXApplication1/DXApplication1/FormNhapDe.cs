@@ -69,18 +69,21 @@ namespace DXApplication1
             tbTenGV.Text = Program.mHoten;
             tbMaGV.Text = Program.username;
 
-            string maMH = ((DataRowView)bdsBoDe[bdsBoDe.Position])["MAMH"].ToString();          
-            dt = Program.ExecSqlDataTable("SELECT MAMH,TENMH FROM MONHOC");
-            cmbTenMH.DataSource = dt;
-            cmbTenMH.DisplayMember = "TENMH";
-            cmbTenMH.ValueMember = "MAMH";
-            cmbTenMH.SelectedIndex = 0;
-            foreach (var item in cmbTenMH.Items)
+            if (bdsBoDe.Count > 0)
             {
-                if (((DataRowView)item)[cmbTenMH.ValueMember].ToString() == maMH)
+                string maMH = ((DataRowView)bdsBoDe[bdsBoDe.Position])["MAMH"].ToString();
+                dt = Program.ExecSqlDataTable("SELECT MAMH,TENMH FROM MONHOC");
+                cmbTenMH.DataSource = dt;
+                cmbTenMH.DisplayMember = "TENMH";
+                cmbTenMH.ValueMember = "MAMH";
+                cmbTenMH.SelectedIndex = 0;
+                foreach (var item in cmbTenMH.Items)
                 {
-                    cmbTenMH.SelectedItem = item;
-                    break;
+                    if (((DataRowView)item)[cmbTenMH.ValueMember].ToString() == maMH)
+                    {
+                        cmbTenMH.SelectedItem = item;
+                        break;
+                    }
                 }
             }
 
@@ -284,10 +287,6 @@ namespace DXApplication1
                 }
             }
             //cmbTenMH.SelectedIndex = 0;
-
-
-
-
             cmbTrinhDo.Items.Add("A");
             cmbTrinhDo.Items.Add("B");
             cmbTrinhDo.Items.Add("C");
@@ -299,7 +298,6 @@ namespace DXApplication1
             cmbDapAn.Items.Add("D");
             cmbDapAn.SelectedIndex = 0;
         }
-
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (bdsBaiThi.Count > 0)

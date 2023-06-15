@@ -125,63 +125,63 @@ namespace DXApplication1
             tENLabel.AutoSize = true;
             tENLabel.Location = new System.Drawing.Point(96, 144);
             tENLabel.Name = "tENLabel";
-            tENLabel.Size = new System.Drawing.Size(60, 25);
+            tENLabel.Size = new System.Drawing.Size(55, 25);
             tENLabel.TabIndex = 0;
-            tENLabel.Text = "TEN:";
+            tENLabel.Text = "Tên:";
             // 
             // hOLabel
             // 
             hOLabel.AutoSize = true;
             hOLabel.Location = new System.Drawing.Point(107, 94);
             hOLabel.Name = "hOLabel";
-            hOLabel.Size = new System.Drawing.Size(49, 25);
+            hOLabel.Size = new System.Drawing.Size(45, 25);
             hOLabel.TabIndex = 2;
-            hOLabel.Text = "HO:";
+            hOLabel.Text = "Họ:";
             // 
             // mASVLabel
             // 
             mASVLabel.AutoSize = true;
-            mASVLabel.Location = new System.Drawing.Point(78, 48);
+            mASVLabel.Location = new System.Drawing.Point(13, 51);
             mASVLabel.Name = "mASVLabel";
-            mASVLabel.Size = new System.Drawing.Size(78, 25);
+            mASVLabel.Size = new System.Drawing.Size(140, 25);
             mASVLabel.TabIndex = 6;
-            mASVLabel.Text = "MASV:";
+            mASVLabel.Text = "Mã sinh viên:";
             // 
             // dIACHILabel
             // 
             dIACHILabel.AutoSize = true;
             dIACHILabel.Location = new System.Drawing.Point(69, 239);
             dIACHILabel.Name = "dIACHILabel";
-            dIACHILabel.Size = new System.Drawing.Size(87, 25);
+            dIACHILabel.Size = new System.Drawing.Size(84, 25);
             dIACHILabel.TabIndex = 8;
-            dIACHILabel.Text = "DIACHI:";
+            dIACHILabel.Text = "Địa chỉ:";
             // 
             // mALOPLabel
             // 
             mALOPLabel.AutoSize = true;
-            mALOPLabel.Location = new System.Drawing.Point(64, 328);
+            mALOPLabel.Location = new System.Drawing.Point(68, 331);
             mALOPLabel.Name = "mALOPLabel";
-            mALOPLabel.Size = new System.Drawing.Size(92, 25);
+            mALOPLabel.Size = new System.Drawing.Size(83, 25);
             mALOPLabel.TabIndex = 10;
-            mALOPLabel.Text = "MALOP:";
+            mALOPLabel.Text = "Mã lớp:";
             // 
             // mATKHAULabel
             // 
             mATKHAULabel.AutoSize = true;
-            mATKHAULabel.Location = new System.Drawing.Point(35, 282);
+            mATKHAULabel.Location = new System.Drawing.Point(44, 285);
             mATKHAULabel.Name = "mATKHAULabel";
-            mATKHAULabel.Size = new System.Drawing.Size(121, 25);
+            mATKHAULabel.Size = new System.Drawing.Size(107, 25);
             mATKHAULabel.TabIndex = 11;
-            mATKHAULabel.Text = "MATKHAU:";
+            mATKHAULabel.Text = "Mật khẩu:";
             // 
             // nGAYSINHLabel
             // 
             nGAYSINHLabel.AutoSize = true;
-            nGAYSINHLabel.Location = new System.Drawing.Point(29, 190);
+            nGAYSINHLabel.Location = new System.Drawing.Point(39, 193);
             nGAYSINHLabel.Name = "nGAYSINHLabel";
-            nGAYSINHLabel.Size = new System.Drawing.Size(127, 25);
+            nGAYSINHLabel.Size = new System.Drawing.Size(114, 25);
             nGAYSINHLabel.TabIndex = 12;
-            nGAYSINHLabel.Text = "NGAYSINH:";
+            nGAYSINHLabel.Text = "Ngày sinh:";
             // 
             // tENCSLabel
             // 
