@@ -173,7 +173,7 @@ namespace DXApplication1
         }
         public static object ExecSqlScalar(string query)
         {
-            using (SqlConnection connection = new SqlConnection(Program.connstr))
+            using (SqlConnection connection = new SqlConnection(connstr))
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 command.CommandType = CommandType.Text;

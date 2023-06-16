@@ -14,7 +14,7 @@ namespace DXApplication1
     {
 
         bool themGV = false;
-        bool suaGV = false;
+        
         private int vitri = 0;
         public FormGiaoVien()
         {
@@ -41,19 +41,10 @@ namespace DXApplication1
             {
                 cmbCoSo.Enabled = true;
                 btnGhi.Enabled = btnThem.Enabled = btnPhucHoi.Enabled = btnXoa.Enabled = btnSua.Enabled = btnHuy.Enabled = false;
-                edtMaGV.Enabled = edtDiaChi.Enabled = edtHo.Enabled = edtTen.Enabled = edtMaKhoa.Enabled = false;
-
-            }
-            if (Program.mGroup == "GIANGVIEN")
-            {
-
-                cmbCoSo.Enabled = false;
-                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnPhucHoi.Enabled = false;
-                btnHuy.Enabled = false;
                 pnGV.Enabled = false;
-                gcGV.Enabled = true;
+
             }
-            if (Program.mGroup == "COSO")
+            else  //CS
             {
                 cmbCoSo.Enabled = false;
                 edtMaGV.Enabled = edtDiaChi.Enabled = edtHo.Enabled = edtTen.Enabled = edtMaKhoa.Enabled = false;
@@ -64,16 +55,12 @@ namespace DXApplication1
                 }
 
             }
-            if (bdsGV.Count == 0 || Program.mGroup == "TRUONG")
+            if (bdsGV.Count == 0)
             {
                 btnXoa.Enabled = false;
                 btnSua.Enabled = false;
             }
-            else
-            {
-                btnXoa.Enabled = true;
-                btnSua.Enabled = true;
-            }
+            
             cmbCoSo.DataSource = Program.bds_dspm;
             cmbCoSo.DisplayMember = "TENCS";
             cmbCoSo.ValueMember = "TENSERVER";
@@ -103,7 +90,7 @@ namespace DXApplication1
             gcGV.Enabled = gcKhoa.Enabled = false;
             btnReload.Enabled = false;
             themGV = true;
-            suaGV = false;
+           
         }
 
         private void btnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -117,7 +104,7 @@ namespace DXApplication1
             btnGhi.Enabled = btnHuy.Enabled = true;
             edtMaGV.Enabled = false;
             themGV = false;
-            suaGV = true;
+           
         }
 
         private void btnHuy_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -169,16 +156,18 @@ namespace DXApplication1
 
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (bdsGVDK.Count > 0)
-            {
-                MessageBox.Show("Giáo viên " + edtHo.Text + " " + edtTen.Text + " đã đăng kí thi nên không thể xóa!", "", MessageBoxButtons.OK);
-                return;
-            }
-            if (bdsBoDe.Count > 0)
-            {
-                MessageBox.Show("Giáo viên " + edtHo.Text + " " + edtTen.Text + " đã soạn đề thi nên không thể xóa!", "", MessageBoxButtons.OK);
-                return;
-            }
+            string maGV = ((DataRowView)bdsGV[bdsGV.Position])["MAGV"].ToString();
+            if (Program.ExecSqlNonQuery("exec [dbo].[SP_XoaGV_checkBODE_checkGVDK] '" + maGV + "'") == 1) return;
+            //if (bdsGVDK.Count > 0)
+            //{
+            //    MessageBox.Show("Giáo viên " + edtHo.Text + " " + edtTen.Text + " đã đăng kí thi nên không thể xóa!", "", MessageBoxButtons.OK);
+            //    return;
+            //}
+            //if (bdsBoDe.Count > 0)
+            //{
+            //    MessageBox.Show("Giáo viên " + edtHo.Text + " " + edtTen.Text + " đã soạn đề thi nên không thể xóa!", "", MessageBoxButtons.OK);
+            //    return;
+            //}
             if (MessageBox.Show("Bạn có muốn xóa Giáo viên: " + edtHo.Text + " " + edtTen.Text + " ?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 try
@@ -310,6 +299,11 @@ namespace DXApplication1
                 this.gIAOVIENTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.gIAOVIENTableAdapter.Update(this.dS.GIAOVIEN);
             }
+        }
+
+        private void dIACHILabel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -114,7 +114,7 @@ namespace DXApplication1
             // mAGVLabel
             // 
             mAGVLabel.AutoSize = true;
-            mAGVLabel.Location = new System.Drawing.Point(61, 65);
+            mAGVLabel.Location = new System.Drawing.Point(42, 65);
             mAGVLabel.Name = "mAGVLabel";
             mAGVLabel.Size = new System.Drawing.Size(161, 25);
             mAGVLabel.TabIndex = 0;
@@ -123,7 +123,7 @@ namespace DXApplication1
             // hOLabel
             // 
             hOLabel.AutoSize = true;
-            hOLabel.Location = new System.Drawing.Point(170, 125);
+            hOLabel.Location = new System.Drawing.Point(151, 125);
             hOLabel.Name = "hOLabel";
             hOLabel.Size = new System.Drawing.Size(49, 25);
             hOLabel.TabIndex = 2;
@@ -132,7 +132,7 @@ namespace DXApplication1
             // tENLabel
             // 
             tENLabel.AutoSize = true;
-            tENLabel.Location = new System.Drawing.Point(159, 187);
+            tENLabel.Location = new System.Drawing.Point(140, 187);
             tENLabel.Name = "tENLabel";
             tENLabel.Size = new System.Drawing.Size(60, 25);
             tENLabel.TabIndex = 4;
@@ -141,16 +141,17 @@ namespace DXApplication1
             // dIACHILabel
             // 
             dIACHILabel.AutoSize = true;
-            dIACHILabel.Location = new System.Drawing.Point(132, 253);
+            dIACHILabel.Location = new System.Drawing.Point(107, 256);
             dIACHILabel.Name = "dIACHILabel";
             dIACHILabel.Size = new System.Drawing.Size(93, 25);
             dIACHILabel.TabIndex = 6;
             dIACHILabel.Text = "ĐỊA CHỈ:";
+            dIACHILabel.Click += new System.EventHandler(this.dIACHILabel_Click);
             // 
             // mAKHLabel
             // 
             mAKHLabel.AutoSize = true;
-            mAKHLabel.Location = new System.Drawing.Point(110, 318);
+            mAKHLabel.Location = new System.Drawing.Point(91, 318);
             mAKHLabel.Name = "mAKHLabel";
             mAKHLabel.Size = new System.Drawing.Size(115, 25);
             mAKHLabel.TabIndex = 8;

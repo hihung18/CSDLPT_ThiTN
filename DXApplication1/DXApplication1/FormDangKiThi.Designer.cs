@@ -689,6 +689,7 @@ namespace DXApplication1
             this.edtMaGV.Name = "edtMaGV";
             this.edtMaGV.Size = new System.Drawing.Size(147, 40);
             this.edtMaGV.TabIndex = 6;
+            this.edtMaGV.EditValueChanged += new System.EventHandler(this.edtMaGV_EditValueChanged);
             // 
             // cmbTrinhDo
             // 
@@ -791,10 +792,10 @@ namespace DXApplication1
             // 
             this.gcGVDK.DataSource = this.bdsGVDK;
             this.gcGVDK.Dock = System.Windows.Forms.DockStyle.Right;
-            this.gcGVDK.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.gcGVDK.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6);
             this.gcGVDK.Location = new System.Drawing.Point(812, 461);
             this.gcGVDK.MainView = this.gridView3;
-            this.gcGVDK.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.gcGVDK.Margin = new System.Windows.Forms.Padding(6);
             this.gcGVDK.MenuManager = this.barManager1;
             this.gcGVDK.Name = "gcGVDK";
             this.gcGVDK.Size = new System.Drawing.Size(1752, 502);

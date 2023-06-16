@@ -61,8 +61,8 @@ namespace DXApplication1
                 barBtnDangNhap.Enabled = false;
                 barBtnDangXuat.Enabled = barBtnTaoTaiKhoan.Enabled = true;
                 ribnDanhMuc.Visible = ribnBaoCao.Visible = true;
-                btnMH.Enabled = btnKhoaLop.Enabled =  btnSinhVien.Enabled = btnGiaoVien.Enabled = btnNhapDe.Enabled = btnDangKiThi.Enabled = true;
-                btnThi.Enabled = false;
+                btnMH.Enabled = btnKhoaLop.Enabled = btnThi.Enabled = btnSinhVien.Enabled = btnGiaoVien.Enabled = btnNhapDe.Enabled = btnDangKiThi.Enabled = true;
+              
             }
             if (Program.mCoso == 2)
             {

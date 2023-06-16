@@ -54,13 +54,7 @@ namespace DXApplication1
                         menuItermXoa.Enabled = menuItermSua.Enabled = true;
                 }
             }
-            if (Program.mCoso == 2)
-            {
-                cmbCoSo.Enabled = false;
-                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnPhucHoi.Enabled = btnHoanTac.Enabled = btnHuy.Enabled = false;
-                menuItermThem.Enabled = menuItermXoa.Enabled = menuItermSua.Enabled = false;
-
-            }
+           
             cmbTenKhoa.Visible = panelEdt.Enabled = edtKHOA_LOP.Visible = false;
             gcKhoa.Enabled = gcLop.Enabled = btnThoat.Enabled = true;
         }

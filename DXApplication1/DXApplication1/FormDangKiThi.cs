@@ -70,6 +70,7 @@ namespace DXApplication1
                     btnSua.Enabled = true;
                 }
             }
+
         }
 
         private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -85,18 +86,15 @@ namespace DXApplication1
 
             btnReload.Enabled = false;
 
-            dt = Program.ExecSqlDataTable("SELECT MAGV,HO,TEN FROM GIAOVIEN");
+            dt = Program.ExecSqlDataTable("EXEC [dbo].[SP_LayHOTENgiaoVien]");
             cmbTenGV.DataSource = dt;
-            cmbTenGV.DisplayMember = "TEN";
+            cmbTenGV.DisplayMember = "HOTEN";
             cmbTenGV.ValueMember = "MAGV";
             cmbTenGV.SelectedIndex = 0;
-            //txtMaGV.Text = Program.username;
-            //txtMaGV.Enabled = false;
-            string maMH = ((DataRowView)bdsMonHoc[bdsMonHoc.Position])["MAMH"].ToString();
-            edtMaMH.Text = maMH;
-
-            string maLop = ((DataRowView)bdsLop[bdsLop.Position])["MALOP"].ToString();
-            edtMaLop.Text = maLop;
+            
+            
+            edtMaMH.Text = ((DataRowView)bdsMonHoc[bdsMonHoc.Position])["MAMH"].ToString();
+            edtMaLop.Text = ((DataRowView)bdsLop[bdsLop.Position])["MALOP"].ToString();
 
             cmbLanThi.Items.Add("1");
             cmbLanThi.Items.Add("2");
@@ -265,7 +263,7 @@ namespace DXApplication1
                 if (dangThem)
                 {
 
-                    if (Program.ExecSqlNonQuery("exec [dbo].[SP_ChuanBiThi] '" + edtMaMH.Text + "','" + edtMaLop.Text
+                    if (Program.ExecSqlNonQuery("exec [dbo].[SP_Dangkithi] '" + edtMaMH.Text + "','" + edtMaLop.Text
                         + "','" + cmbTrinhDo.Text.Trim() + "','" + cmbSoCauThi.Text.Trim() + "','" + cmbLanThi.Text.Trim() + "','" + dtNgayThi.Text.ToString() + "'") == 1)
                     {
                         edtMaMH.Focus();
@@ -311,6 +309,8 @@ namespace DXApplication1
                 btnSua.Enabled = true;
             }
             colMAMH.ColumnEditName = edtMaMH.Text;
+            
+
         }
 
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -397,6 +397,23 @@ namespace DXApplication1
                 edtMaGV.Text = maGV;
             }
         }
-        
+
+        private void edtMaGV_EditValueChanged(object sender, EventArgs e)
+        {
+            if (bdsGVDK.Count > 0)
+            {
+                string maGV = ((DataRowView)bdsGVDK[bdsGVDK.Position])["MAGV"].ToString();
+                dt = Program.ExecSqlDataTable("EXEC [dbo].[SP_LayHOTEN_theo_MaGV] '" + maGV + "'");
+                cmbTenGV.DataSource = dt;
+                cmbTenGV.DisplayMember = "HOTEN";
+                cmbTenGV.ValueMember = "MAGV";
+                cmbTenGV.SelectedIndex = 0;
+                
+            }
+            else
+            {
+                cmbTenGV.SelectedItem = null;
+            }
+        }
     }
 }

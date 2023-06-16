@@ -186,11 +186,11 @@ namespace DXApplication1
             // tENCSLabel
             // 
             tENCSLabel.AutoSize = true;
-            tENCSLabel.Location = new System.Drawing.Point(830, 34);
+            tENCSLabel.Location = new System.Drawing.Point(128, 25);
             tENCSLabel.Name = "tENCSLabel";
-            tENCSLabel.Size = new System.Drawing.Size(89, 25);
+            tENCSLabel.Size = new System.Drawing.Size(119, 25);
             tENCSLabel.TabIndex = 0;
-            tENCSLabel.Text = "TENCS:";
+            tENCSLabel.Text = "Tên cơ sở: ";
             // 
             // barManager1
             // 
@@ -342,15 +342,15 @@ namespace DXApplication1
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1744, 67);
+            this.barDockControlTop.Size = new System.Drawing.Size(1831, 67);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 844);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 934);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1744, 22);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1831, 22);
             // 
             // barDockControlLeft
             // 
@@ -358,15 +358,15 @@ namespace DXApplication1
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 67);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 777);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 867);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1744, 67);
+            this.barDockControlRight.Location = new System.Drawing.Point(1831, 67);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 777);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 867);
             // 
             // dS
             // 
@@ -404,14 +404,14 @@ namespace DXApplication1
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 67);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1744, 76);
+            this.panel2.Size = new System.Drawing.Size(1831, 76);
             this.panel2.TabIndex = 14;
             // 
             // cmbCoSo
             // 
             this.cmbCoSo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsCoSo, "TENCS", true));
             this.cmbCoSo.FormattingEnabled = true;
-            this.cmbCoSo.Location = new System.Drawing.Point(925, 31);
+            this.cmbCoSo.Location = new System.Drawing.Point(253, 22);
             this.cmbCoSo.Name = "cmbCoSo";
             this.cmbCoSo.Size = new System.Drawing.Size(450, 33);
             this.cmbCoSo.TabIndex = 1;
@@ -430,7 +430,7 @@ namespace DXApplication1
             this.gcLop.MainView = this.gridView1;
             this.gcLop.MenuManager = this.barManager1;
             this.gcLop.Name = "gcLop";
-            this.gcLop.Size = new System.Drawing.Size(1744, 301);
+            this.gcLop.Size = new System.Drawing.Size(1831, 378);
             this.gcLop.TabIndex = 14;
             this.gcLop.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -489,9 +489,9 @@ namespace DXApplication1
             this.pnSV.Controls.Add(tENLabel);
             this.pnSV.Controls.Add(this.edtTen);
             this.pnSV.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnSV.Location = new System.Drawing.Point(0, 444);
+            this.pnSV.Location = new System.Drawing.Point(0, 521);
             this.pnSV.Name = "pnSV";
-            this.pnSV.Size = new System.Drawing.Size(614, 400);
+            this.pnSV.Size = new System.Drawing.Size(614, 413);
             this.pnSV.TabIndex = 24;
             // 
             // dtNgaySinh
@@ -572,11 +572,11 @@ namespace DXApplication1
             // 
             this.gcSV.DataSource = this.bdsSV;
             this.gcSV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcSV.Location = new System.Drawing.Point(614, 444);
+            this.gcSV.Location = new System.Drawing.Point(614, 521);
             this.gcSV.MainView = this.gridView2;
             this.gcSV.MenuManager = this.barManager1;
             this.gcSV.Name = "gcSV";
-            this.gcSV.Size = new System.Drawing.Size(1130, 400);
+            this.gcSV.Size = new System.Drawing.Size(1217, 413);
             this.gcSV.TabIndex = 28;
             this.gcSV.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -674,7 +674,7 @@ namespace DXApplication1
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1744, 866);
+            this.ClientSize = new System.Drawing.Size(1831, 956);
             this.Controls.Add(this.gcSV);
             this.Controls.Add(this.pnSV);
             this.Controls.Add(this.gcLop);
